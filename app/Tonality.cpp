@@ -3,7 +3,7 @@
 
 namespace MusicReadingTrainer {
 
-    const wchar_t* C_major[] = {
+    std::vector<std::wstring> C_major = {
         L"                   |                                                                                           ",
         L"                   |                                                                                           ",
         L"                   |                                                                                           ",
@@ -23,7 +23,7 @@ namespace MusicReadingTrainer {
         L"                   |                                                                                           ",
     };
 
-    const wchar_t* G_major[] = {
+    std::vector<std::wstring> G_major = {
 
         L"                   |                                                                                           ",
         L"                   |                                                                                           ",
@@ -45,7 +45,7 @@ namespace MusicReadingTrainer {
     };
 
 
-    const wchar_t* D_major[] = {
+    std::vector<std::wstring> D_major = {
 
         L"                   |                                                                                           ",
         L"                   |                                                                                           ",
@@ -66,7 +66,7 @@ namespace MusicReadingTrainer {
         L"                   |                                                                                           ",
     };
 
-    const wchar_t* A_major[] = {
+    std::vector<std::wstring> A_major = {
 
         L"                   |                                                                                           ",
         L"                   |                                                                                           ",
@@ -87,7 +87,7 @@ namespace MusicReadingTrainer {
         L"                   |                                                                                           ",
     };
 
-    const wchar_t* E_major[] = {
+    std::vector<std::wstring> E_major = {
 
         L"                   |                                                                                           ",
         L"                   |                                                                                           ",
@@ -108,7 +108,7 @@ namespace MusicReadingTrainer {
         L"                   |                                                                                           ",
     };
 
-    const wchar_t* B_major[] = {
+    std::vector<std::wstring> B_major = {
 
         L"                   |                                                                                           ",
         L"                   |                                                                                           ",
@@ -130,7 +130,7 @@ namespace MusicReadingTrainer {
     };
 
 
-    const wchar_t* Gflat_major[] = {
+    std::vector<std::wstring> Gflat_major = {
 
         L"                   |                                                                                           ",
         L"                   |                                                                                           ",
@@ -152,7 +152,7 @@ namespace MusicReadingTrainer {
     };
 
 
-    const wchar_t* Dflat_major[] = {
+    std::vector<std::wstring> Dflat_major = {
 
         L"                   |                                                                                           ",
         L"                   |                                                                                           ",
@@ -173,7 +173,7 @@ namespace MusicReadingTrainer {
         L"                   |                                                                                           ",
     };
 
-    const wchar_t* Aflat_major[] = {
+    std::vector<std::wstring> Aflat_major = {
 
         L"                   |                                                                                           ",
         L"                   |                                                                                           ",
@@ -194,7 +194,7 @@ namespace MusicReadingTrainer {
         L"                   |                                                                                           ",
     };
 
-    const wchar_t* Eflat_major[] = {
+    std::vector<std::wstring> Eflat_major = {
 
         L"                   |                                                                                           ",
         L"                   |                                                                                           ",
@@ -216,7 +216,7 @@ namespace MusicReadingTrainer {
     };
 
 
-    const wchar_t* Bflat_major[] = {
+    std::vector<std::wstring> Bflat_major = {
 
         L"                   |                                                                                           ",
         L"                   |                                                                                           ",
@@ -237,7 +237,7 @@ namespace MusicReadingTrainer {
         L"                   |                                                                                           ",
     };
 
-    const wchar_t* F_major[] = {
+    std::vector<std::wstring> F_major = {
 
         L"                   |                                                                                           ",
         L"                   |                                                                                           ",
@@ -295,11 +295,11 @@ namespace MusicReadingTrainer {
         }
     }
 
-    void Tonality::draw(Renderer& renderer) {
+    void Tonality::draw(ScreenBuffer& screenBuffer) {
 
-        const wchar_t* const* data = staves[activeKey];
+        const std::vector<std::wstring>& data = staves[activeKey];
 
-        renderer.setScreen(position_x, position_y, layoutHeight, data);
+        screenBuffer.setScreen(position_x, position_y, data);
 
     }
 

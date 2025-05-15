@@ -1,30 +1,11 @@
 #include "CppUnitTest.h"
 #include "../app/Tonality.h"
-#include "../app/Renderer.h"
 #include "../app/ScreenBuffer.h"
 
 #include <cwchar>
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace MusicReadingTrainer;
-
-
-class MockRenderer : public Renderer {
-public:
-    int callCount = 0;
-    int lastX = -1;
-    int lastY = -1;
-    int lastHeight = -1;
-    const wchar_t* const* lastData = nullptr;
-
-    void setScreen(int position_x, int position_y, int layoutHeight, const wchar_t* const* data) override {
-        callCount++;
-        lastX = position_x;
-        lastY = position_y;
-        lastHeight = layoutHeight;
-        lastData = data;
-    }
-};
 
 namespace MusicReadingTrainerTests 
 {
@@ -36,11 +17,12 @@ namespace MusicReadingTrainerTests
         {
 
             Tonality tonality;
-            MockRenderer mockRenderer;
-
             tonality.setActiveKey(L"Aflat");
 
-            const wchar_t* expectedData[] = {
+            ScreenBuffer screenBuffer;
+            screenBuffer.clearScreen();
+
+            std::vector<std::wstring> expectedData = {
                 L"                   |                                                                                           ",
                 L"                   |                                                                                           ",
                 L"                   |                                                                                           ",
@@ -60,35 +42,49 @@ namespace MusicReadingTrainerTests
                 L"                   |                                                                                           ",
             };
 
+            const int position_x = 5;
+            const int position_y = 2;
 
-            tonality.draw(mockRenderer);
+            tonality.draw(screenBuffer);
 
+            std::vector<std::wstring> actualData;
+            for (int y = 0; y < (int)expectedData.size(); ++y) {
+                std::wstring line;
+                for (int x = 0; x < (int)expectedData[y].length(); ++x) {
+                    line += screenBuffer.getScreenCharAt(position_x + x, position_y + y);
+                }
+                actualData.push_back(line);
+            }
 
-            Assert::AreEqual(17, mockRenderer.lastHeight);
-            for (int i = 0; i < 17; ++i) {
-                Assert::AreEqual(0, wcscmp(expectedData[i], mockRenderer.lastData[i]));
+            Assert::AreEqual((int)expectedData.size(), (int)actualData.size());
+
+            for (int i = 0; i < (int)expectedData.size(); ++i) {
+                Assert::AreEqual(expectedData[i], actualData[i]);
             }
         }
 
 
         TEST_METHOD(TestTonalityDraw)
         {
-
             Tonality tonality;
-            MockRenderer mockRenderer;
 
-            tonality.draw(mockRenderer);
+            ScreenBuffer screenBuffer;
+            screenBuffer.clearScreen();
 
-            Assert::AreEqual(1, mockRenderer.callCount);
-            Assert::AreEqual(5, mockRenderer.lastX);
-            Assert::AreEqual(2, mockRenderer.lastY);
-            Assert::AreEqual(17, mockRenderer.lastHeight);
+            tonality.draw(screenBuffer);
 
-            Assert::IsNotNull(mockRenderer.lastData);
+            const int position_x = 5;  
+            const int position_y = 2;  
 
-            std::wstring line = mockRenderer.lastData[4];
-            Assert::IsTrue(line.find(L"---") != std::wstring::npos);
+            int lineIndex = 4;
 
+            std::wstring line;
+ 
+            for (int x = position_x; x < 120; ++x) {
+                line += screenBuffer.getScreenCharAt(x, position_y + lineIndex);
+            }
+
+            Assert::IsTrue(line.find(L"---") != std::wstring::npos, L"Line does not contain expected '---' pattern");
         }
     };
 }

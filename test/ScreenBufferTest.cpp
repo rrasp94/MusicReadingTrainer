@@ -26,8 +26,8 @@ namespace MusicReadingTrainerTests
         {
             ScreenBuffer screenBuffer;
             screenBuffer.clearScreen();
-            const wchar_t* data[] = { L"Hello", L"World" };
-            screenBuffer.setScreen(0, 0, 2, data);
+            std::vector<std::wstring> data = { L"Hello", L"World" };
+            screenBuffer.setScreen(0, 0, data);
 
             Assert::AreEqual(screenBuffer.getScreenCharAt(0, 0), L'H');
             Assert::AreEqual(screenBuffer.getScreenCharAt(1, 0), L'e');

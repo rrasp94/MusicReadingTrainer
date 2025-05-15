@@ -3,11 +3,12 @@
 #include <algorithm>
 
 
+
 namespace MusicReadingTrainer {
 
 	ScreenBuffer::ScreenBuffer() {
 
-		screen = new wchar_t[nScreenWidth * nScreenHeight];
+		screen = std::vector<wchar_t>(nScreenWidth * nScreenHeight, L' ');
 		hConsole = CreateConsoleScreenBuffer(GENERIC_READ | GENERIC_WRITE, 0, NULL, CONSOLE_TEXTMODE_BUFFER, NULL);
 		SetConsoleActiveScreenBuffer(hConsole);
 
@@ -15,15 +16,14 @@ namespace MusicReadingTrainer {
 
 	ScreenBuffer::~ScreenBuffer() {
 
-		delete[] screen;
 		CloseHandle(hConsole);
 
 	}
 
-	void ScreenBuffer::setScreen(int position_x, int position_y, int layoutHeight, const wchar_t* const* data) {
+	void ScreenBuffer::setScreen(int position_x, int position_y, const std::vector<std::wstring>& data) {
 
-		for (int y = 0; y < layoutHeight; y++) {
-			for (int x = 0; x < wcslen(data[y]); x++) {
+		for (int y = 0; y < data.size(); y++) {
+			for (int x = 0; x < data[y].size(); x++) {
 				int screen_index = (position_y + y) * nScreenWidth + (position_x + x);
 				screen[screen_index] = data[y][x];
 			}
@@ -39,7 +39,7 @@ namespace MusicReadingTrainer {
 
 	void ScreenBuffer::renderScreen() {
 
-		WriteConsoleOutputCharacter(hConsole, screen, nScreenWidth * nScreenHeight, { 0, 0 }, &dwBytesWritten);
+		WriteConsoleOutputCharacter(hConsole, screen.data(), nScreenWidth * nScreenHeight, { 0, 0 }, &dwBytesWritten);
 
 	}
 

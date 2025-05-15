@@ -134,7 +134,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
-    <ClInclude Include="Renderer.h" />
     <ClInclude Include="ScreenBuffer.h" />
     <ClInclude Include="Tonality.h" />
   </ItemGroup>

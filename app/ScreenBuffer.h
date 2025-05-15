@@ -1,18 +1,18 @@
 #pragma once
 
 #include "windows.h"
-#include "Renderer.h"
 #include <vector>
+#include <string>
 
 
 namespace MusicReadingTrainer {
 
-	class ScreenBuffer : public Renderer {
+	class ScreenBuffer {
 
 	private:
 		const int nScreenWidth = 120;
 		const int nScreenHeight = 30;
-		wchar_t* screen;
+		std::vector<wchar_t> screen;
 		HANDLE hConsole;
 		DWORD dwBytesWritten = 0;
 
@@ -20,7 +20,7 @@ namespace MusicReadingTrainer {
 		ScreenBuffer();
 		~ScreenBuffer();
 
-		void setScreen(int position_x, int position_y, int layoutHeight, const wchar_t* const* data);
+		void setScreen(int position_x, int position_y, const std::vector<std::wstring>& data);
 
 		void clearScreen();
 		void renderScreen();

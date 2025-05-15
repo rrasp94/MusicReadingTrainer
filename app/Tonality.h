@@ -4,7 +4,6 @@
 #include <map>
 #include <vector>
 
-#include "Renderer.h"
 #include "ScreenBuffer.h"
 
 namespace MusicReadingTrainer {
@@ -15,10 +14,9 @@ namespace MusicReadingTrainer {
 
 		int position_x = 5;
 		int position_y = 2;
-		int layoutHeight = 17;
 
 		std::wstring activeKey = L"Aflat";
-		std::map<std::wstring, const wchar_t**> staves;
+		std::map<std::wstring, std::vector<std::wstring>> staves;
 
 		void initializeStaves();
 
@@ -28,7 +26,7 @@ namespace MusicReadingTrainer {
 
 		void setActiveKey(const std::wstring& newKey);
 
-		void draw(Renderer& renderer);
+		void draw(ScreenBuffer& screenBuffer);
 
 	};
 
