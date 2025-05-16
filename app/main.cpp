@@ -6,14 +6,7 @@ int main()
 
     MusicReadingTrainer::Game game;
 
-    while (1) {
+    game.run();
 
-
-        game.render();
-
-    }
-
-
-    return 0;
 }
 

@@ -19,12 +19,21 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\app\InputManager.cpp" />
+    <ClCompile Include="..\app\Keyboard.cpp" />
+    <ClCompile Include="..\app\ScoreManager.cpp" />
     <ClCompile Include="..\app\ScreenBuffer.cpp" />
     <ClCompile Include="..\app\Tonality.cpp" />
+    <ClCompile Include="InputManagerTest.cpp" />
+    <ClCompile Include="KeyboardTest.cpp" />
+    <ClCompile Include="ScoreManagerTest.cpp" />
     <ClCompile Include="ScreenBufferTest.cpp" />
     <ClCompile Include="TonalityTest.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\app\InputManager.h" />
+    <ClInclude Include="..\app\Keyboard.h" />
+    <ClInclude Include="..\app\ScoreManager.h" />
     <ClInclude Include="..\app\ScreenBuffer.h" />
     <ClInclude Include="..\app\Tonality.h" />
   </ItemGroup>

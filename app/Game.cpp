@@ -1,9 +1,26 @@
 #include "Game.h"
-#include "Tonality.h"
-#include "ScreenBuffer.h"
+
 
 namespace MusicReadingTrainer {
 
+
+	void Game::run() {
+
+		while (isRunning) {
+			update();
+			render();
+			Sleep(100); 
+		}
+	}
+
+	void Game::update() {
+
+		inputManager.update();
+
+		std::vector<wchar_t> pressedKeys = inputManager.getPressedKeys();
+
+		keyboard.updateLayout(pressedKeys);
+	}
 
 	void Game::render() {
 
@@ -11,8 +28,11 @@ namespace MusicReadingTrainer {
 
 		tonality.draw(screenBuffer);
 
-		screenBuffer.renderScreen();
+		keyboard.draw(screenBuffer);
 
+		scoreManager.draw(screenBuffer);
+
+		screenBuffer.renderScreen();
 	}
 
 }
