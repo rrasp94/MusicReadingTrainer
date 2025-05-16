@@ -262,18 +262,18 @@ namespace MusicReadingTrainer {
 
         staves = {
 
-            { L"C", C_major },
-            { L"G", G_major },
-            { L"D", D_major },
-            { L"A", A_major },
-            { L"E", E_major },
-            { L"B", B_major },
-            { L"Gflat", Gflat_major },
-            { L"Dflat", Dflat_major },
-            { L"Aflat", Aflat_major },
-            { L"Eflat", Eflat_major },
-            { L"Bflat", Bflat_major },
-            { L"F", F_major },
+            { Key::C, C_major },
+            { Key::G, G_major },
+            { Key::D, D_major },
+            { Key::A, A_major },
+            { Key::E, E_major },
+            { Key::B, B_major },
+            { Key::Gflat, Gflat_major },
+            { Key::Dflat, Dflat_major },
+            { Key::Aflat, Aflat_major },
+            { Key::Eflat, Eflat_major },
+            { Key::Bflat, Bflat_major },
+            { Key::F, F_major },
 
         };
 
@@ -285,13 +285,13 @@ namespace MusicReadingTrainer {
 
     }
 
-    void Tonality::setActiveKey(const std::wstring& newKey) {
+    void Tonality::setActiveKey(Key newKey) {
 
         if (staves.find(newKey) != staves.end()) {
             activeKey = newKey;
         }
         else {
-            activeKey = L"C";
+            activeKey = Key::C;
         }
     }
 

@@ -16,8 +16,10 @@ namespace MusicReadingTrainerTests
         TEST_METHOD(TestTonalityDrawsCorrectDataForAflat)
         {
 
+            // Verifies full staff lines for "Aflat" key are drawn correctly.
+
             Tonality tonality;
-            tonality.setActiveKey(L"Aflat");
+            tonality.setActiveKey(Key::Aflat);
 
             ScreenBuffer screenBuffer;
             screenBuffer.clearScreen();
@@ -66,6 +68,8 @@ namespace MusicReadingTrainerTests
 
         TEST_METHOD(TestTonalityDraw)
         {
+            // Checks that staff lines contain the expected "---" pattern.
+
             Tonality tonality;
 
             ScreenBuffer screenBuffer;

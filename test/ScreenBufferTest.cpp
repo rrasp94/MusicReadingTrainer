@@ -14,6 +14,8 @@ namespace MusicReadingTrainerTests
 
         TEST_METHOD(TestClearScreen)
         {
+            // Verifies that clearScreen fills the entire buffer with spaces.
+
             ScreenBuffer screenBuffer;
             screenBuffer.clearScreen();
 
@@ -24,6 +26,8 @@ namespace MusicReadingTrainerTests
 
         TEST_METHOD(TestSetScreen)
         {
+            // Verifies that setScreen writes the given lines correctly at specified position.
+
             ScreenBuffer screenBuffer;
             screenBuffer.clearScreen();
             std::vector<std::wstring> data = { L"Hello", L"World" };
