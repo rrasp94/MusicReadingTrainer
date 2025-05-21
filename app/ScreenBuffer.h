@@ -10,11 +10,13 @@ namespace MusicReadingTrainer {
 	class ScreenBuffer {
 
 	private:
-		const int nScreenWidth = 120;
-		const int nScreenHeight = 30;
+		int nScreenWidth = 120;
+		int nScreenHeight = 30;
 		std::vector<wchar_t> screen;
 		HANDLE hConsole;
 		DWORD dwBytesWritten = 0;
+
+		void updateConsoleSize();
 
 	public:
 		ScreenBuffer();
@@ -26,6 +28,9 @@ namespace MusicReadingTrainer {
 		void renderScreen();
 
 		wchar_t getScreenCharAt(int x, int y) const;
+
+		int getWidth() const;
+		int getHeight() const;
 	};
 
 }

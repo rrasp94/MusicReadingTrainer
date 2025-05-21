@@ -20,6 +20,9 @@ namespace MusicReadingTrainer {
 		std::vector<wchar_t> pressedKeys = inputManager.getPressedKeys();
 
 		keyboard.updateLayout(pressedKeys);
+
+		handleSound(pressedKeys);
+
 	}
 
 	void Game::render() {
@@ -33,6 +36,17 @@ namespace MusicReadingTrainer {
 		scoreManager.draw(screenBuffer);
 
 		screenBuffer.renderScreen();
+	}
+
+	void Game::handleSound(const std::vector<wchar_t>& pressedKeys) {
+
+		if (!pressedKeys.empty()) {
+			soundManager.SetKey(towupper(pressedKeys[0]));
+		}
+		else {
+			soundManager.Stop();
+		}
+
 	}
 
 }

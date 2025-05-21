@@ -5,6 +5,7 @@
 #include "Keyboard.h"
 #include "InputManager.h"
 #include "ScoreManager.h"
+#include "SoundManager.h"
 
 
 namespace MusicReadingTrainer {
@@ -18,6 +19,7 @@ namespace MusicReadingTrainer {
 		Keyboard keyboard;
 		InputManager inputManager;
 		ScoreManager scoreManager;
+		SoundManager soundManager;
 
 		bool isRunning = true;
 
@@ -26,6 +28,8 @@ namespace MusicReadingTrainer {
 		void run(); 
 		void update();
 		void render();
+
+		void handleSound(const std::vector<wchar_t>& pressedKeys);
 
 	};
 

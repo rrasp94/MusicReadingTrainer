@@ -133,14 +133,17 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ScoreManager.cpp" />
     <ClCompile Include="ScreenBuffer.cpp" />
+    <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="Tonality.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Keyboard.h" />
+    <ClInclude Include="olcNoiseMaker.h" />
     <ClInclude Include="ScoreManager.h" />
     <ClInclude Include="ScreenBuffer.h" />
+    <ClInclude Include="SoundManager.h" />
     <ClInclude Include="Tonality.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

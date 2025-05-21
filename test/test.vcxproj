@@ -23,11 +23,13 @@
     <ClCompile Include="..\app\Keyboard.cpp" />
     <ClCompile Include="..\app\ScoreManager.cpp" />
     <ClCompile Include="..\app\ScreenBuffer.cpp" />
+    <ClCompile Include="..\app\SoundManager.cpp" />
     <ClCompile Include="..\app\Tonality.cpp" />
     <ClCompile Include="InputManagerTest.cpp" />
     <ClCompile Include="KeyboardTest.cpp" />
     <ClCompile Include="ScoreManagerTest.cpp" />
     <ClCompile Include="ScreenBufferTest.cpp" />
+    <ClCompile Include="SoundManagerTest.cpp" />
     <ClCompile Include="TonalityTest.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -35,6 +37,7 @@
     <ClInclude Include="..\app\Keyboard.h" />
     <ClInclude Include="..\app\ScoreManager.h" />
     <ClInclude Include="..\app\ScreenBuffer.h" />
+    <ClInclude Include="..\app\SoundManager.h" />
     <ClInclude Include="..\app\Tonality.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

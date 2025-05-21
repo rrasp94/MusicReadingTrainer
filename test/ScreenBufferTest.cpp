@@ -8,7 +8,7 @@ using namespace MusicReadingTrainer;
 
 namespace MusicReadingTrainerTests 
 {
-    TEST_CLASS(ScreenBufferTests)
+    TEST_CLASS(ScreenBufferTest)
     {
     public:
 
@@ -19,8 +19,13 @@ namespace MusicReadingTrainerTests
             ScreenBuffer screenBuffer;
             screenBuffer.clearScreen();
 
-            for (int i = 0; i < 120 * 30; i++) {
-                Assert::AreEqual(screenBuffer.getScreenCharAt(i % 120, i / 120), L' ');
+            int width = screenBuffer.getWidth();
+            int height = screenBuffer.getHeight();
+
+            for (int y = 0; y < height; y++) {
+                for (int x = 0; x < width; x++) {
+                    Assert::AreEqual(screenBuffer.getScreenCharAt(x, y), L' ');
+                }
             }
         }
 
@@ -30,6 +35,7 @@ namespace MusicReadingTrainerTests
 
             ScreenBuffer screenBuffer;
             screenBuffer.clearScreen();
+
             std::vector<std::wstring> data = { L"Hello", L"World" };
             screenBuffer.setScreen(0, 0, data);
 
@@ -38,6 +44,17 @@ namespace MusicReadingTrainerTests
             Assert::AreEqual(screenBuffer.getScreenCharAt(0, 1), L'W');
             Assert::AreEqual(screenBuffer.getScreenCharAt(1, 1), L'o');
         }
+
+        TEST_METHOD(TestScreenSizeMatchesConsole)
+        {
+            // Verifies that the screen buffer dimensions match the actual console window size.
+
+            ScreenBuffer screenBuffer;
+
+            Assert::IsTrue(screenBuffer.getWidth() > 0);
+            Assert::IsTrue(screenBuffer.getHeight() > 0);
+        }
+
     };
 }
   

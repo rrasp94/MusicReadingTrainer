@@ -48,6 +48,12 @@
     <ClCompile Include="ScoreManagerTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\app\SoundManager.cpp">
+      <Filter>Source Files\app</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundManagerTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\app\ScreenBuffer.h">
@@ -63,6 +69,9 @@
       <Filter>Source Files\app</Filter>
     </ClInclude>
     <ClInclude Include="..\app\ScoreManager.h">
+      <Filter>Source Files\app</Filter>
+    </ClInclude>
+    <ClInclude Include="..\app\SoundManager.h">
       <Filter>Source Files\app</Filter>
     </ClInclude>
   </ItemGroup>
