@@ -5,14 +5,13 @@
 
 namespace MusicReadingTrainer {
 
+	constexpr std::array<wchar_t, 12> InputManager::keys;
+
 	InputManager::InputManager() {
 
-		for (int i = 0; i < wcslen(keys); i++) {
-
-			wchar_t key = keys[i];
+		for (const auto key : keys) {
 			keyStates[key] = false;
 			previousKeyStates[key] = false;
-
 		}
 
 	}
@@ -21,15 +20,8 @@ namespace MusicReadingTrainer {
 
 		previousKeyStates = keyStates;
 
-		for (int i = 0; i < wcslen(keys); i++) {
-
-			wchar_t key = keys[i];
-			if (GetAsyncKeyState(key) & 0x8000) {
-				keyStates[key] = true;
-			}
-			else {
-				keyStates[key] = false;
-			}
+		for (const auto key : keys) {
+			keyStates[key] = (GetAsyncKeyState(key) & 0x8000) != 0;
 		}
 
 	}
@@ -56,12 +48,12 @@ namespace MusicReadingTrainer {
 
 		std::vector<wchar_t> pressedKeys;
 
-		for (int i = 0; i < wcslen(keys); i++) {
-			wchar_t key = keys[i];
+		for (const auto key : keys) {
 			if (isKeyPressed(key)) {
 				pressedKeys.push_back(towlower(key));
 			}
 		}
+
 		return pressedKeys;
 
 	}

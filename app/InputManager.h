@@ -2,6 +2,7 @@
 
 #include <map>
 #include <vector>
+#include <array>
 
 
 namespace MusicReadingTrainer {
@@ -10,11 +11,12 @@ namespace MusicReadingTrainer {
 
 	private:
 
-		const wchar_t* keys = L"YSXDCVGBHNJM";
 		std::map<wchar_t, bool> keyStates;
 		std::map<wchar_t, bool> previousKeyStates;
 
 	public:
+
+		static constexpr std::array<wchar_t, 12> keys = { L'Y', L'S', L'X', L'D', L'C', L'V', L'G', L'B', L'H', L'N', L'J', L'M' };
 
 		InputManager();
 

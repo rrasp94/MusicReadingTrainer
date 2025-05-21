@@ -19,7 +19,7 @@ namespace MusicReadingTrainerTests
             // Tests that all keys are initialized to false (not pressed)
             InputManager inputManager;
 
-            for (wchar_t key : L"YSXDCVGBHNJM") {
+            for (wchar_t key : InputManager::keys) {
                 Assert::IsFalse(inputManager.isKeyPressed(key));
                 Assert::IsFalse(inputManager.wasKeyPressed(key));
             }
