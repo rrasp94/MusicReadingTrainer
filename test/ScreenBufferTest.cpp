@@ -55,6 +55,16 @@ namespace MusicReadingTrainerTests
             Assert::IsTrue(screenBuffer.getHeight() > 0);
         }
 
+        TEST_METHOD(TestSetCharAt)
+        {
+            ScreenBuffer screenBuffer;
+            screenBuffer.clearScreen();
+
+            screenBuffer.setCharAt(10, 5, L'X');
+
+            Assert::AreEqual(screenBuffer.getScreenCharAt(10, 5), L'X');
+        }
+
     };
 }
   

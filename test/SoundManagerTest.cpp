@@ -12,6 +12,8 @@ namespace MusicReadingTrainerTests
 
         TEST_METHOD(GetFrequency_ReturnsCorrectValues)
         {
+            // Tests that GetFrequency returns correct values for specific keys, and 0.0 for an invalid key.
+
             try {
                 SoundManager soundManager(false); // audio off
 
@@ -27,6 +29,8 @@ namespace MusicReadingTrainerTests
 
         TEST_METHOD(SetKey_SetsCorrectFrequency)
         {
+            // Tests that SetKey updates the global frequency to the correct value for each key.
+
             try {
                 SoundManager soundManager(false); // audio off
 
@@ -43,6 +47,8 @@ namespace MusicReadingTrainerTests
 
         TEST_METHOD(Start_ResetsFrequency)
         {
+            // Tests that calling Start resets the global frequency output to 0.0.
+
             try {
                 SoundManager soundManager(false); // audio off
                 SoundManager::dFrequencyOutput = 500.0;
@@ -57,6 +63,8 @@ namespace MusicReadingTrainerTests
 
         TEST_METHOD(Stop_AlsoResetsFrequency)
         {
+            // Tests that calling Stop also resets the global frequency output to 0.0.
+
             try {
                 SoundManager soundManager(false); // audio off
                 SoundManager::dFrequencyOutput = 500.0;
@@ -71,6 +79,8 @@ namespace MusicReadingTrainerTests
 
         TEST_METHOD(MakeNoise_ProducesCorrectWaveform)
         {
+            // Tests that MakeNoise produces either +0.1 or -0.1 waveform sample for a given time and frequency.
+
             try {
                 SoundManager::dFrequencyOutput = 440.0;
 

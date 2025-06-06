@@ -5,12 +5,9 @@
 #include <vector>
 
 #include "ScreenBuffer.h"
+#include "MusicTypes.h"
 
 namespace MusicReadingTrainer {
-
-	enum class Key {
-		C, G, D, A, E, B, Gflat, Dflat, Aflat, Eflat, Bflat, F
-	};
 
 	class Tonality {
 
@@ -19,18 +16,22 @@ namespace MusicReadingTrainer {
 		int position_x = 5;
 		int position_y = 2;
 
-		Key activeKey = Key::Aflat;
 		std::map<Key, std::vector<std::wstring>> staves;
 
+		std::map<Key, std::map<NoteName, std::vector<int>>> notePositions;
+
 		void initializeStaves();
+		void initializeNotePositions();
 
 	public:
 
 		Tonality();
 
-		void setActiveKey(Key newKey);
+		void draw(ScreenBuffer& screenBuffer, Key key);
 
-		void draw(ScreenBuffer& screenBuffer);
+		const std::map<NoteName, std::vector<int>>& getNotePositionsForKey(Key key) const;
+
+		bool isFlatKey(Key key) const;
 
 	};
 

@@ -21,12 +21,22 @@
   <ItemGroup>
     <ClCompile Include="..\app\InputManager.cpp" />
     <ClCompile Include="..\app\Keyboard.cpp" />
+    <ClCompile Include="..\app\KeySelectionScreen.cpp" />
+    <ClCompile Include="..\app\LevelManager.cpp" />
+    <ClCompile Include="..\app\Note.cpp" />
+    <ClCompile Include="..\app\NoteGenerator.cpp" />
+    <ClCompile Include="..\app\NoteManager.cpp" />
     <ClCompile Include="..\app\ScoreManager.cpp" />
     <ClCompile Include="..\app\ScreenBuffer.cpp" />
     <ClCompile Include="..\app\SoundManager.cpp" />
     <ClCompile Include="..\app\Tonality.cpp" />
     <ClCompile Include="InputManagerTest.cpp" />
     <ClCompile Include="KeyboardTest.cpp" />
+    <ClCompile Include="KeySelectionScreenTest.cpp" />
+    <ClCompile Include="LevelManagerTest.cpp" />
+    <ClCompile Include="NoteGeneratorTest.cpp" />
+    <ClCompile Include="NoteManagerTest.cpp" />
+    <ClCompile Include="NoteTest.cpp" />
     <ClCompile Include="ScoreManagerTest.cpp" />
     <ClCompile Include="ScreenBufferTest.cpp" />
     <ClCompile Include="SoundManagerTest.cpp" />
@@ -35,6 +45,12 @@
   <ItemGroup>
     <ClInclude Include="..\app\InputManager.h" />
     <ClInclude Include="..\app\Keyboard.h" />
+    <ClInclude Include="..\app\KeySelectionScreen.h" />
+    <ClInclude Include="..\app\LevelManager.h" />
+    <ClInclude Include="..\app\MusicTypes.h" />
+    <ClInclude Include="..\app\Note.h" />
+    <ClInclude Include="..\app\NoteGenerator.h" />
+    <ClInclude Include="..\app\NoteManager.h" />
     <ClInclude Include="..\app\ScoreManager.h" />
     <ClInclude Include="..\app\ScreenBuffer.h" />
     <ClInclude Include="..\app\SoundManager.h" />

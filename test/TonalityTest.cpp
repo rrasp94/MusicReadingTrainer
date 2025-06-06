@@ -19,10 +19,12 @@ namespace MusicReadingTrainerTests
             // Verifies full staff lines for "Aflat" key are drawn correctly.
 
             Tonality tonality;
-            tonality.setActiveKey(Key::Aflat);
+            Key key = Key::Aflat;
 
             ScreenBuffer screenBuffer;
             screenBuffer.clearScreen();
+
+            tonality.draw(screenBuffer, key);
 
             std::vector<std::wstring> expectedData = {
                 L"                   |                                                                                           ",
@@ -47,8 +49,6 @@ namespace MusicReadingTrainerTests
             const int position_x = 5;
             const int position_y = 2;
 
-            tonality.draw(screenBuffer);
-
             std::vector<std::wstring> actualData;
             for (int y = 0; y < (int)expectedData.size(); ++y) {
                 std::wstring line;
@@ -65,7 +65,6 @@ namespace MusicReadingTrainerTests
             }
         }
 
-
         TEST_METHOD(TestTonalityDraw)
         {
             // Checks that staff lines contain the expected "---" pattern.
@@ -75,7 +74,7 @@ namespace MusicReadingTrainerTests
             ScreenBuffer screenBuffer;
             screenBuffer.clearScreen();
 
-            tonality.draw(screenBuffer);
+            tonality.draw(screenBuffer, Key::C);
 
             const int position_x = 5;  
             const int position_y = 2;  

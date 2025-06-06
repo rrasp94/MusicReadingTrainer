@@ -23,6 +23,7 @@ namespace MusicReadingTrainer {
 		~ScreenBuffer();
 
 		void setScreen(int position_x, int position_y, const std::vector<std::wstring>& data);
+		void setCharAt(int x, int y, wchar_t ch);
 
 		void clearScreen();
 		void renderScreen();

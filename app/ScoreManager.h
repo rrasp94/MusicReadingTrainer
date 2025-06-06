@@ -19,6 +19,7 @@ namespace MusicReadingTrainer {
 		int maxStreak = 0;
 		int levelUpStreak = 0;
 		int levelUpTarget = 10;
+		const int maxLevel = 16;
 
 		wchar_t statusLine[200];
 
@@ -27,6 +28,13 @@ namespace MusicReadingTrainer {
 		ScoreManager();
 
 		void draw(ScreenBuffer& screenBuffer);
+
+		void addCorrectAnswer();
+		void addIncorrectAnswer();
+		void updateStatusLine();
+		void reset();
+
+		int getLevel() const;
 
 	};
 

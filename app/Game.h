@@ -6,6 +6,10 @@
 #include "InputManager.h"
 #include "ScoreManager.h"
 #include "SoundManager.h"
+#include "NoteManager.h"
+#include "NoteGenerator.h"
+#include "LevelManager.h"
+#include "KeySelectionScreen.h"
 
 
 namespace MusicReadingTrainer {
@@ -20,10 +24,19 @@ namespace MusicReadingTrainer {
 		InputManager inputManager;
 		ScoreManager scoreManager;
 		SoundManager soundManager;
+		NoteManager noteManager;
+		NoteGenerator noteGenerator;
+		LevelManager levelManager;
+		KeySelectionScreen keySelectionScreen;
 
-		bool isRunning = true;
+		Key activeKey;
+
+		bool isRunning;
+		bool isKeySelected;
 
 	public:
+
+		Game();
 
 		void run(); 
 		void update();

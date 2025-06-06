@@ -104,6 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp14</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -130,7 +131,12 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Keyboard.cpp" />
+    <ClCompile Include="KeySelectionScreen.cpp" />
+    <ClCompile Include="LevelManager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Note.cpp" />
+    <ClCompile Include="NoteGenerator.cpp" />
+    <ClCompile Include="NoteManager.cpp" />
     <ClCompile Include="ScoreManager.cpp" />
     <ClCompile Include="ScreenBuffer.cpp" />
     <ClCompile Include="SoundManager.cpp" />
@@ -140,6 +146,12 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Keyboard.h" />
+    <ClInclude Include="KeySelectionScreen.h" />
+    <ClInclude Include="LevelManager.h" />
+    <ClInclude Include="MusicTypes.h" />
+    <ClInclude Include="Note.h" />
+    <ClInclude Include="NoteGenerator.h" />
+    <ClInclude Include="NoteManager.h" />
     <ClInclude Include="olcNoiseMaker.h" />
     <ClInclude Include="ScoreManager.h" />
     <ClInclude Include="ScreenBuffer.h" />

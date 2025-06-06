@@ -1,9 +1,10 @@
 #pragma once
 
 #include "ScreenBuffer.h"
-#include "InputManager.h"
 #include <string>
 #include <vector>
+#include <map>
+#include "Note.h"
 
 namespace MusicReadingTrainer {
 
@@ -16,12 +17,22 @@ namespace MusicReadingTrainer {
 
 		std::vector<std::wstring> keyboardLayout;
 
+		std::map<wchar_t, NoteName> keyToNoteSharpMap;
+		std::map<wchar_t, NoteName> keyToNoteFlatMap;
+
+		const std::map<wchar_t, NoteName>* currentKeyToNoteMap;
+
 	public:
 
-		Keyboard();
+		Keyboard(bool useFlats = false);
 
 		void updateLayout(const std::vector<wchar_t>& pressedKeys);
+
 		void draw(ScreenBuffer& screenBuffer);
+
+		NoteName getNoteForKey(wchar_t key) const;
+
+		void setUseFlats(bool useFlats);
 
 	};
 }

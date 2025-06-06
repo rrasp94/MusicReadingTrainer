@@ -49,6 +49,14 @@ namespace MusicReadingTrainer {
 		}
 	}
 
+	void ScreenBuffer::setCharAt(int x, int y, wchar_t ch) {
+
+		updateConsoleSize(); 
+		if (x >= 0 && x < nScreenWidth && y >= 0 && y < nScreenHeight) {
+			screen[y * nScreenWidth + x] = ch;
+		}
+	}
+
 	void ScreenBuffer::clearScreen() {
 
 		updateConsoleSize();

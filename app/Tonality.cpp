@@ -1,5 +1,6 @@
 #include "Tonality.h"
 #include "ScreenBuffer.h"
+#include "MusicTypes.h"
 
 namespace MusicReadingTrainer {
 
@@ -279,28 +280,155 @@ namespace MusicReadingTrainer {
 
     }
 
+    void Tonality::initializeNotePositions() {
+
+        notePositions[Key::C] = {
+            { NoteName::C,  {2, 9, 16} },
+            { NoteName::D,  {8, 15} },
+            { NoteName::E,  {7, 14} },
+            { NoteName::F,  {6, 13} },
+            { NoteName::G,  {5, 12} },
+            { NoteName::A,  {4, 11, 18} },
+            { NoteName::B,  {3, 10, 17} }
+        };
+
+        notePositions[Key::G] = {
+            { NoteName::C,      {2, 9, 16} },
+            { NoteName::D,      {8, 15} },
+            { NoteName::E,      {7, 14} },
+            { NoteName::Fsharp, {6, 13} },
+            { NoteName::G,      {5, 12} },
+            { NoteName::A,      {4, 11, 18} },
+            { NoteName::B,      {3, 10, 17} }
+        };
+
+        notePositions[Key::D] = {
+            { NoteName::Csharp, {2, 9, 16} },
+            { NoteName::D,      {8, 15} },
+            { NoteName::E,      {7, 14} },
+            { NoteName::Fsharp, {6, 13} },
+            { NoteName::G,      {5, 12} },
+            { NoteName::A,      {4, 11, 18} },
+            { NoteName::B,      {3, 10, 17} }
+        };
+
+        notePositions[Key::A] = {
+            { NoteName::Csharp, {2, 9, 16} },
+            { NoteName::D,      {8, 15} },
+            { NoteName::E,      {7, 14} },
+            { NoteName::Fsharp, {6, 13} },
+            { NoteName::Gsharp, {5, 12} },
+            { NoteName::A,      {4, 11, 18} },
+            { NoteName::B,      {3, 10, 17} }
+        };
+
+        notePositions[Key::E] = {
+            { NoteName::Csharp, {2, 9, 16} },
+            { NoteName::Dsharp, {8, 15} },
+            { NoteName::E,      {7, 14} },
+            { NoteName::Fsharp, {6, 13} },
+            { NoteName::Gsharp, {5, 12} },
+            { NoteName::A,      {4, 11, 18} },
+            { NoteName::B,      {3, 10, 17} }
+        };
+
+        notePositions[Key::B] = {
+            { NoteName::Csharp, {2, 9, 16} },
+            { NoteName::Dsharp, {8, 15} },
+            { NoteName::E,      {7, 14} },
+            { NoteName::Fsharp, {6, 13} },
+            { NoteName::Gsharp, {5, 12} },
+            { NoteName::Asharp, {4, 11, 18} },
+            { NoteName::B,      {3, 10, 17} }
+        };
+
+        notePositions[Key::Gflat] = {
+            { NoteName::B,  {2, 9, 16} },
+            { NoteName::Dflat,  {8, 15} },
+            { NoteName::Eflat,  {7, 14} },
+            { NoteName::F,      {6, 13} },
+            { NoteName::Gflat,  {5, 12} },
+            { NoteName::Aflat,  {4, 11, 18} },
+            { NoteName::Bflat,  {3, 10, 17} }
+        };
+
+        notePositions[Key::Dflat] = {
+            { NoteName::C,      {2, 9, 16} },
+            { NoteName::Dflat,  {8, 15} },
+            { NoteName::Eflat,  {7, 14} },
+            { NoteName::F,      {6, 13} },
+            { NoteName::Gflat,  {5, 12} },
+            { NoteName::Aflat,  {4, 11, 18} },
+            { NoteName::Bflat,  {3, 10, 17} }
+        };
+
+        notePositions[Key::Aflat] = {
+            { NoteName::C,      {2, 9, 16} },
+            { NoteName::Dflat,  {8, 15} },
+            { NoteName::Eflat,  {7, 14} },
+            { NoteName::F,      {6, 13} },
+            { NoteName::G,      {5, 12} },
+            { NoteName::Aflat,  {4, 11, 18} },
+            { NoteName::Bflat,  {3, 10, 17} }
+        };
+
+        notePositions[Key::Eflat] = {
+            { NoteName::C,      {2, 9, 16} },
+            { NoteName::D,      {8, 15} },
+            { NoteName::Eflat,  {7, 14} },
+            { NoteName::F,      {6, 13} },
+            { NoteName::G,      {5, 12} },
+            { NoteName::Aflat,  {4, 11, 18} },
+            { NoteName::Bflat,  {3, 10, 17} }
+        };
+
+        notePositions[Key::Bflat] = {
+            { NoteName::C,      {2, 9, 16} },
+            { NoteName::D,      {8, 15} },
+            { NoteName::Eflat,  {7, 14} },
+            { NoteName::F,      {6, 13} },
+            { NoteName::G,      {5, 12} },
+            { NoteName::A,      {4, 11, 18} },
+            { NoteName::Bflat,  {3, 10, 17} }
+        };
+
+        notePositions[Key::F] = {
+            { NoteName::C,      {2, 9, 16} },
+            { NoteName::D,      {8, 15} },
+            { NoteName::E,      {7, 14} },
+            { NoteName::F,      {6, 13} },
+            { NoteName::G,      {5, 12} },
+            { NoteName::A,      {4, 11, 18} },
+            { NoteName::Bflat,  {3, 10, 17} }
+        };
+    }
+
     Tonality::Tonality() {
 
         initializeStaves();
+        initializeNotePositions();
 
     }
 
-    void Tonality::setActiveKey(Key newKey) {
+    void Tonality::draw(ScreenBuffer& screenBuffer, Key key) {
 
-        if (staves.find(newKey) != staves.end()) {
-            activeKey = newKey;
-        }
-        else {
-            activeKey = Key::C;
-        }
-    }
-
-    void Tonality::draw(ScreenBuffer& screenBuffer) {
-
-        const std::vector<std::wstring>& data = staves[activeKey];
+        const std::vector<std::wstring>& data = staves[key];
 
         screenBuffer.setScreen(position_x, position_y, data);
 
+    }
+
+    const std::map<NoteName, std::vector<int>>& Tonality::getNotePositionsForKey(Key key) const {
+        return notePositions.at(key);
+    }
+
+    bool Tonality::isFlatKey(Key key) const {
+
+        static const std::vector<Key> sharpKeys = {
+            Key::C, Key::G, Key::D, Key::A, Key::E, Key::B, Key::F
+        };
+
+        return std::find(sharpKeys.begin(), sharpKeys.end(), key) == sharpKeys.end();
     }
 
 }
