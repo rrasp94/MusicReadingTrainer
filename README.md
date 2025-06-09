@@ -15,7 +15,7 @@ A console-based music reading training game designed to help users improve their
 
 Run the application and select a key signature to start practicing. Notes will appear on the staff, and you must identify and press the correct corresponding keyboard keys to score points and advance levels.
 
-- At the start, select a key signature using the keyboard and confirm by pressing **Enter**  
+- At the start, select a key signature using the keyboard ("w" and "s" keys) and confirm by pressing **Enter**  
 - Notes begin to appear on the staff from right to left  
 - Guess the notes by pressing corresponding keys on your computer keyboard  
 - Every **10 correct guesses**, a new note is added to the staff (increasing difficulty)  
