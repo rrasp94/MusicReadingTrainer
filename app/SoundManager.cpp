@@ -1,65 +1,73 @@
 #include "SoundManager.h"
 #include <cmath>
-
+#include <vector>
+#include <atomic>
 
 namespace MusicReadingTrainer {
 
-	std::atomic<double> SoundManager::dFrequencyOutput = 0.0;
+    std::atomic<double> SoundManager::dFrequencyOutput = 0.0;
     std::atomic<bool> SoundManager::running = false;
+    SoundManager* SoundManager::instance = nullptr;
+
+ 
+    double SoundManager::MakeNoiseStatic(double dTime) {
+
+        if (!instance) return 0.0;
+        double freq = dFrequencyOutput.load();
+        if (freq <= 0.0) return 0.0;
+        double dOutput = sin(freq * 2.0 * 3.14159 * dTime);
+        return dOutput > 0 ? 0.1 : -0.1;
+    }
+
+    double SoundManager::MakeNoise(double dTime)
+    {
+        return MakeNoiseStatic(dTime);
+    }
 
     SoundManager::SoundManager(bool enableAudio)
         : sound(nullptr), audioEnabled(enableAudio)
     {
-        running = true;
+        instance = this;
 
         if (audioEnabled) {
             std::vector<std::wstring> devices = olcNoiseMaker<short>::Enumerate();
-
             if (!devices.empty()) {
                 sound = new olcNoiseMaker<short>(devices[0], 44100, 1, 16, 512);
-                sound->SetUserFunction(SoundManager::MakeNoise);
-            }
-            else {
-                sound = nullptr;
+                sound->SetUserFunction(SoundManager::MakeNoiseStatic);
             }
         }
     }
 
     SoundManager::~SoundManager() {
 
-        running = false;     
-
         if (sound) {
-            sound->Stop(); 
+            try {
+                sound->Stop();
+            }
+            catch (...) {}
             delete sound;
             sound = nullptr;
         }
+        instance = nullptr;
         dFrequencyOutput = 0.0;
     }
 
     void SoundManager::Start() {
 
         dFrequencyOutput = 0.0;
-        running = true;
-
     }
 
     void SoundManager::Stop() {
 
-        dFrequencyOutput = 0.0;
-        running = false;
-        if (sound)
-            sound->Stop();
+        dFrequencyOutput = 0.0; 
     }
 
     void SoundManager::SetKey(wchar_t key) {
 
         dFrequencyOutput = GetFrequency(key);
-
     }
 
     double SoundManager::GetFrequency(wchar_t key) {
-
         switch (key) {
         case 'Y': return 261.63;
         case 'S': return 277.18;
@@ -75,15 +83,6 @@ namespace MusicReadingTrainer {
         case 'M': return 493.88;
         default:  return 0.0;
         }
-
-    }
-
-    double SoundManager::MakeNoise(double dTime) {
-
-        if (!running) return 0.0; 
-        double dOutput = sin(dFrequencyOutput * 2.0 * 3.14159 * dTime);
-        return dOutput > 0 ? 0.1 : -0.1;
-
     }
 
 }

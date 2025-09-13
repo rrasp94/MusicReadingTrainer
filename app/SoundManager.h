@@ -11,6 +11,8 @@ namespace MusicReadingTrainer {
         olcNoiseMaker<short>* sound;
         bool audioEnabled;
         static std::atomic<bool> running;
+        static SoundManager* instance;
+        static double MakeNoiseStatic(double dTime);
 
     public:
 

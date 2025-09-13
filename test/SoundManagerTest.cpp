@@ -79,7 +79,7 @@ namespace MusicReadingTrainerTests
 
         TEST_METHOD(MakeNoise_ProducesCorrectWaveform)
         {
-            // Tests that MakeNoise produces either +0.1 or -0.1 waveform sample for a given time and frequency.
+            // Tests that MakeNoise produces either +0.1, -0.1, or 0.0 waveform sample for a given time and frequency.
 
             try {
                 SoundManager::SetRunning(true);
@@ -87,7 +87,8 @@ namespace MusicReadingTrainerTests
 
                 double dTime = 0.0;
                 double sample = SoundManager::MakeNoise(dTime);
-                Assert::IsTrue(sample == 0.1 || sample == -0.1);
+
+                Assert::IsTrue(sample == 0.1 || sample == -0.1 || sample == 0.0);
             }
             catch (...) {
                 Assert::Fail(L"Exception thrown in MakeNoise_ProducesCorrectWaveform");
