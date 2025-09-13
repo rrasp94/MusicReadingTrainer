@@ -6,7 +6,6 @@ int main() {
 
     MusicReadingTrainer::Game game;
 
-  
     MusicReadingTrainer::g_game = &game;
     SetConsoleCtrlHandler(MusicReadingTrainer::ConsoleHandler, TRUE);
 

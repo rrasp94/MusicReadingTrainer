@@ -34,9 +34,9 @@ namespace MusicReadingTrainer {
 
 		Key activeKey;
 
-		bool isRunning;
-		bool isKeySelected;
+		std::atomic<bool> isRunning;
 		std::atomic<bool> shouldExit;
+		bool isKeySelected;
 
 	public:
 
