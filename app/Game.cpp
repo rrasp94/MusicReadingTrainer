@@ -3,12 +3,27 @@
 
 namespace MusicReadingTrainer {
 
+	Game* g_game = nullptr;
+
+	BOOL WINAPI ConsoleHandler(DWORD signal) {
+		if (signal == CTRL_CLOSE_EVENT && g_game) {
+			g_game->stopGame();
+		}
+		return TRUE;
+	}
+
 	Game::Game()
 		: isRunning(true), isKeySelected(false), activeKey(Key::C)
 	{
 		levelManager.setLevel(1);
 	}
 
+	void Game::stopGame() {
+
+		isRunning = false;
+		soundManager.Stop();
+		noteManager.clearNotes();
+	}
 
 	void Game::run() {
 

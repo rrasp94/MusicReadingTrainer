@@ -11,6 +11,8 @@
 #include "LevelManager.h"
 #include "KeySelectionScreen.h"
 
+#include <vector>
+#include <windows.h>
 
 namespace MusicReadingTrainer {
 
@@ -44,7 +46,12 @@ namespace MusicReadingTrainer {
 
 		void handleSound(const std::vector<wchar_t>& pressedKeys);
 
+		void stopGame();
+
 	};
+
+	extern Game* g_game;                       
+	BOOL WINAPI ConsoleHandler(DWORD signal);  
 
 }
 
