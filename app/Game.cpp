@@ -7,7 +7,7 @@ namespace MusicReadingTrainer {
 
 	BOOL WINAPI ConsoleHandler(DWORD signal) {
 		if (signal == CTRL_CLOSE_EVENT && g_game) {
-			g_game->stopGame();
+			g_game->requestExit();
 		}
 		return TRUE;
 	}
@@ -21,15 +21,31 @@ namespace MusicReadingTrainer {
 	void Game::stopGame() {
 
 		isRunning = false;
-		soundManager.Stop();
-		noteManager.clearNotes();
+
+		if (isKeySelected) { 
+			soundManager.Stop();
+			noteManager.clearNotes();
+		}
+	}
+
+	void Game::requestExit() {
+		shouldExit = true;
 	}
 
 	void Game::run() {
 
-		while (!isKeySelected) {
-			inputManager.update(); 
+		while (!isKeySelected && !shouldExit) {
+			inputManager.update();
 			auto justPressedKeys = inputManager.getJustPressedKeys();
+
+			for (wchar_t key : justPressedKeys) {
+				if (key == L'\x1B') { // ESC
+					requestExit();
+					break;
+				}
+			}
+
+			if (shouldExit) break;
 
 			if (keySelectionScreen.update(justPressedKeys, activeKey)) {
 				isKeySelected = true;
@@ -38,13 +54,16 @@ namespace MusicReadingTrainer {
 
 			render();
 			Sleep(100);
-		
 		}
 
-		while (isRunning) {
+		while (isRunning && !shouldExit) {
 			update();
 			render();
 			Sleep(100);
+		}
+
+		if (shouldExit && isKeySelected) {
+			stopGame();
 		}
 	}
 
@@ -57,13 +76,19 @@ namespace MusicReadingTrainer {
 		std::vector<wchar_t> pressedKeys = inputManager.getPressedKeys();
 
 		for (wchar_t key : justPressedMenuKeys) {
-			if (key == L'\x1B') {  
-				isKeySelected = false;
-				scoreManager.reset();     
-				levelManager.setLevel(1); 
-				noteManager.clearNotes(); 
-				soundManager.Stop();      
-				return;                  
+			if (key == L'\x1B') {
+				if (!isKeySelected) {
+					requestExit();
+					return;
+				}
+				else {
+					isKeySelected = false;
+					scoreManager.reset();
+					levelManager.setLevel(1);
+					noteManager.clearNotes();
+					soundManager.Stop();
+					return;
+				}
 			}
 		}
 

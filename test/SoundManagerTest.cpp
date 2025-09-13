@@ -82,6 +82,7 @@ namespace MusicReadingTrainerTests
             // Tests that MakeNoise produces either +0.1 or -0.1 waveform sample for a given time and frequency.
 
             try {
+                SoundManager::SetRunning(true);
                 SoundManager::dFrequencyOutput = 440.0;
 
                 double dTime = 0.0;

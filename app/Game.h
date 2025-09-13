@@ -13,6 +13,7 @@
 
 #include <vector>
 #include <windows.h>
+#include <atomic>
 
 namespace MusicReadingTrainer {
 
@@ -35,6 +36,7 @@ namespace MusicReadingTrainer {
 
 		bool isRunning;
 		bool isKeySelected;
+		std::atomic<bool> shouldExit;
 
 	public:
 
@@ -47,6 +49,7 @@ namespace MusicReadingTrainer {
 		void handleSound(const std::vector<wchar_t>& pressedKeys);
 
 		void stopGame();
+		void requestExit();
 
 	};
 

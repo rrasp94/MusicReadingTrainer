@@ -10,6 +10,7 @@ namespace MusicReadingTrainer {
 
         olcNoiseMaker<short>* sound;
         bool audioEnabled;
+        static std::atomic<bool> running;
 
     public:
 
@@ -22,6 +23,8 @@ namespace MusicReadingTrainer {
 
         double GetFrequency(wchar_t key);
         static double MakeNoise(double dTime);
+
+        static void SetRunning(bool value) { running = value; }
 
         static std::atomic<double> dFrequencyOutput;
 

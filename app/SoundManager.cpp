@@ -5,9 +5,12 @@
 namespace MusicReadingTrainer {
 
 	std::atomic<double> SoundManager::dFrequencyOutput = 0.0;
+    std::atomic<bool> SoundManager::running = false;
 
-
-    SoundManager::SoundManager(bool enableAudio) : sound(nullptr), audioEnabled(enableAudio) {
+    SoundManager::SoundManager(bool enableAudio)
+        : sound(nullptr), audioEnabled(enableAudio)
+    {
+        running = true;
 
         if (audioEnabled) {
             std::vector<std::wstring> devices = olcNoiseMaker<short>::Enumerate();
@@ -24,21 +27,29 @@ namespace MusicReadingTrainer {
 
     SoundManager::~SoundManager() {
 
-        delete sound;
-        sound = nullptr;
+        running = false;     
 
+        if (sound) {
+            sound->Stop(); 
+            delete sound;
+            sound = nullptr;
+        }
+        dFrequencyOutput = 0.0;
     }
 
     void SoundManager::Start() {
 
         dFrequencyOutput = 0.0;
+        running = true;
 
     }
 
     void SoundManager::Stop() {
 
         dFrequencyOutput = 0.0;
-
+        running = false;
+        if (sound)
+            sound->Stop();
     }
 
     void SoundManager::SetKey(wchar_t key) {
@@ -69,6 +80,7 @@ namespace MusicReadingTrainer {
 
     double SoundManager::MakeNoise(double dTime) {
 
+        if (!running) return 0.0; 
         double dOutput = sin(dFrequencyOutput * 2.0 * 3.14159 * dTime);
         return dOutput > 0 ? 0.1 : -0.1;
 
