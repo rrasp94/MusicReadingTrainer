@@ -21,7 +21,8 @@ Run the application and select a key signature to start practicing. Notes will a
 - Every **10 correct guesses**, a new note is added to the staff (increasing difficulty)  
 - There are **16 levels** in total, each introducing new notes  
 - The game tracks your score and updates your level based on performance  
-- Press **ESC** at any time to reset the game and return to the key selection screen 
+- Press **ESC** at any time to reset the game and return to the key selection screen
+- Press **ESC** in the key selection screen to exit the game
 
 ## Technologies
 
