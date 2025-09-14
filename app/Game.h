@@ -34,13 +34,17 @@ namespace MusicReadingTrainer {
 
 		Key activeKey;
 
-		std::atomic<bool> isRunning;
 		std::atomic<bool> shouldExit;
+		bool isRunning;
 		bool isKeySelected;
+
+		static Game* instance;
+		static BOOL WINAPI ConsoleHandler(DWORD signal);
 
 	public:
 
 		Game();
+		~Game();
 
 		void run(); 
 		void update();
@@ -52,9 +56,6 @@ namespace MusicReadingTrainer {
 		void requestExit();
 
 	};
-
-	extern Game* g_game;                       
-	BOOL WINAPI ConsoleHandler(DWORD signal);  
 
 }
 

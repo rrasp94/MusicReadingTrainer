@@ -3,11 +3,12 @@
 
 namespace MusicReadingTrainer {
 
-	Game* g_game = nullptr;
+	Game* Game::instance = nullptr;
 
-	BOOL WINAPI ConsoleHandler(DWORD signal) {
-		if (signal == CTRL_CLOSE_EVENT && g_game) {
-			g_game->requestExit();
+	BOOL WINAPI Game::ConsoleHandler(DWORD signal) {
+
+		if (signal == CTRL_CLOSE_EVENT && instance) {
+			instance->requestExit();
 		}
 		return TRUE;
 	}
@@ -16,6 +17,14 @@ namespace MusicReadingTrainer {
 		: isRunning(true), isKeySelected(false), activeKey(Key::C)
 	{
 		levelManager.setLevel(1);
+
+		instance = this;
+		SetConsoleCtrlHandler(ConsoleHandler, TRUE);
+	}
+
+	Game::~Game() {
+
+		SetConsoleCtrlHandler(ConsoleHandler, FALSE);
 	}
 
 	void Game::stopGame() {
