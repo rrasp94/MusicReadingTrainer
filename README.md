@@ -28,4 +28,4 @@ Run the application and select a key signature to start practicing. Notes will a
 - C++ (console application)
 - Unit testing with Microsoft Visual Studio C++ Unit Test Framework
 
-![Console view showing notes on staff](images/screenshot1.png)
+![Console view showing notes on staff](images/screenshot.png)
